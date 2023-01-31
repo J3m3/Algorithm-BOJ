@@ -52,8 +52,8 @@ using namespace std;
 int N;
 int count = 0;
 bool col_visited[MAX*2-1];
-bool sum_rowcol[MAX*2-1]; // Check diag shape like '/'
-bool sub_rowcol[MAX*2-1]; // Check diag shape like '\'
+bool sum_rowcol_map[MAX*2-1]; // Check diag shape like '/'
+bool sub_rowcol_map[MAX*2-1]; // Check diag shape like '\'
 
 void DFS(int r) {
     if(r == N) {
@@ -61,18 +61,18 @@ void DFS(int r) {
         return;
     }
     for(int c = 0; c < N; c++) {
-        if(col_visited[c] || sum_rowcol[c+r] || sub_rowcol[r-c+N-1])
+        if(col_visited[c] || sum_rowcol_map[c+r] || sub_rowcol_map[r-c+N-1])
             continue;
 
         col_visited[c] = true;
-        sum_rowcol[c+r] = true;
-        sub_rowcol[r-c+N-1] = true;
+        sum_rowcol_map[c+r] = true;
+        sub_rowcol_map[r-c+N-1] = true;
 
         DFS(r + 1);
 
         col_visited[c] = false; 
-        sum_rowcol[c+r] = false;
-        sub_rowcol[r-c+N-1] = false;
+        sum_rowcol_map[c+r] = false;
+        sub_rowcol_map[r-c+N-1] = false;
     }
 }
 
