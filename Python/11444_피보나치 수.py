@@ -35,3 +35,20 @@ def fib(N):
 input = __import__("sys").stdin.readline
 
 print(fib(int(input())))
+
+# --------------------------------------------
+
+def fib(N):
+    if not dp.get(N, None):
+        if N & 1:
+            dp[N] = (fib((N + 1) // 2) ** 2 + fib(N // 2) ** 2) % 1_000_000_007
+        else:
+            dp[N] = ((2 * fib((N - 1) // 2) + fib(N // 2)) * fib(N // 2)) % 1_000_000_007
+    
+    return dp[N]
+
+input = __import__("sys").stdin.readline
+
+N = int(input())
+dp = {0: 0, 1: 1, 2: 1}
+print(fib(N))
