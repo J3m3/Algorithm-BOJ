@@ -43,3 +43,26 @@ for v in range(1, V+1):
         print(distances[i] if distances[i] != INF else 0, end=' ')
     print()
     distances_init(distances)
+
+# -------------------------------------------
+
+input = __import__("sys").stdin.readline
+INF = float('inf')
+
+V = int(input())
+E = int(input())
+
+graph = [[INF if i != j else 0 for i in range(V)] for j in range(V)]
+for _ in range(E):
+    u, v, w = map(int, input().split())
+    graph[u-1][v-1] = min(graph[u-1][v-1], w)
+
+for m in range(V):
+    for u in range(V):
+        for v in range(V):
+            graph[u][v] = min(graph[u][v], graph[u][m] + graph[m][v])
+
+for i in range(V):
+    for j in range(V):
+        print(graph[i][j] if graph[i][j] != INF else 0, end=' ')
+    print()
