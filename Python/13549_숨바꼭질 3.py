@@ -17,6 +17,9 @@ def bfs(start):
             break
 
         for val in [v * 2, v + 1, v - 1]:
+            # The maximum length of visited could be 100000
+            # so there might be hash collision in visited dictionary
+            # Instead, we can use array[100001] to guarantee the accessing time complexity of O(1)
             if 0 <= val < MAX and not visited.get(val):
                 if val == v * 2:
                     visited[val] = visited[v]
