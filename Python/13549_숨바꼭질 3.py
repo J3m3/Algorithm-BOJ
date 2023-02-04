@@ -50,9 +50,10 @@ def bfs(start):
             print(visited[v])
             break
 
-        for val in [v * 2, v + 1, v - 1]:
+        # shifting bits is not that faster than multiplying 2
+        for val in [v << 1, v + 1, v - 1]:
             if 0 <= val < MAX and visited[val] == -1:
-                if val == v * 2:
+                if val == v << 1:
                     visited[val] = visited[v]
                     dq.appendleft(val)
                 else:
