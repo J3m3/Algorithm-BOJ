@@ -37,3 +37,39 @@ while deq:
         deq.append((a, b))
 
 print(count[N-1][M-1])
+
+# ------------------
+
+from collections import deque
+input = __import__("sys").stdin.readline
+
+N, M = map(int, input().split())
+board = [list(map(int, input().rstrip())) for _ in range(N)]
+board[0][0] = -1
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+def bfs(start):
+    queue = deque([start])
+    board[0][0] = 10
+
+    while queue:
+        x, y = queue.popleft()
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if not (0 <= nx < M and 0 <= ny < N):
+                continue
+
+            if board[ny][nx] != 1:
+                continue
+
+            board[ny][nx] = 10
+            board[ny][nx] = board[y][x] + 1
+            queue.append((nx, ny))
+
+bfs((0, 0))
+print(board[N-1][M-1] - 9)
