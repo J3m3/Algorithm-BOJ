@@ -45,7 +45,6 @@ input = __import__("sys").stdin.readline
 
 N, M = map(int, input().split())
 board = [list(map(int, input().rstrip())) for _ in range(N)]
-board[0][0] = -1
 
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
