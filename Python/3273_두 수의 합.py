@@ -24,3 +24,22 @@ while left < right:
         total += arr[left]
 
 print(count)
+
+# --------------------------------
+
+input = __import__("sys").stdin.readline
+MAX = 1000000
+
+n = int(input())
+arr = list(map(int, input().split()))
+target = int(input())
+needed = [0] * (2*MAX+1)
+count = 0
+
+for num in arr:
+    if needed[num]:
+        count += 1
+
+    needed[target - num] = 1
+
+print(count)
