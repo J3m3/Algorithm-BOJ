@@ -1,5 +1,13 @@
 from collections import deque
 
+'''
+Tree 구조에서 BFS를 진행하는 경우...
+1. 매번 child를 방문한 뒤 parent를 기록한다고 가정할 때,
+2. 새로 방문되는 child는 "항상 parent 미기록 상태"
+
+이를 이용해 모든 vertex에 대해 BFS를 수행하면서...
+1. parent가 이미 기록된 child를 만난다면, cycle이 존재한다는 의미이므로 Tree가 아님을 확인
+'''
 def is_tree(graph, start):
     queue = deque([start])
     parent_map[start] = -1
