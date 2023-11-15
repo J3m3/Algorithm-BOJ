@@ -1,0 +1,8 @@
+#!/bin/bash
+
+problem=$1
+
+sed "s/members = \[/members = [\"${problem}\", /g" Cargo.toml > .sedbuff
+mv .sedbuff Cargo.toml
+
+cargo new --vcs none $problem --bin
